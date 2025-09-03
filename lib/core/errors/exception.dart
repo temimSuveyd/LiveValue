@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:qimahalan/core/errors/error_model.dart';
+import 'package:Dinaro/core/errors/error_model.dart';
 
 class ServerException implements Exception {
-  final ErrorModel errorModel ;
+  final ErrorModel errorModel;
   ServerException(this.errorModel);
 }
 
@@ -60,6 +60,10 @@ class UnknownException extends ServerException {
   UnknownException(super.errorModel);
 }
 
+class UsageLimitReached extends ServerException {
+  UsageLimitReached(super.errorModel);
+}
+
 handleDioException(DioException e) {
   switch (e.type) {
     case DioExceptionType.connectionError:
@@ -95,17 +99,15 @@ handleDioException(DioException e) {
           throw CofficientException(ErrorModel.fromJson(e.response!.data));
 
         case 504: // Bad request
-
-          throw BadResponseException(
-              ErrorModel( errorMessage: e.response!.data));
+          throw BadResponseException(ErrorModel(errorMessage: e.response!.data),);
+        case 104: // usage limit
+          throw UsageLimitReached(ErrorModel(errorMessage: e.response!.data));
       }
 
     case DioExceptionType.cancel:
-      throw CancelException(
-          ErrorModel(errorMessage: e.toString(),));
+      throw CancelException(ErrorModel(errorMessage: e.toString()));
 
     case DioExceptionType.unknown:
-      throw UnknownException(
-          ErrorModel(errorMessage: e.toString(),));
+      throw UnknownException(ErrorModel(errorMessage: e.toString()));
   }
 }

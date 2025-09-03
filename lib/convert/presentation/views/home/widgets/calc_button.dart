@@ -25,6 +25,8 @@ class CalcButton extends StatelessWidget {
       shape: shape,
       minWidth: minWidth,
       height: 64,
+      elevation: 0, // shadow silindi
+      highlightElevation: 0, // shadow silindi
       child: Text(
         label,
         style: TextStyle(

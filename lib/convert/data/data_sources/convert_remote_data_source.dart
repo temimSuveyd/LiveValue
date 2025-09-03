@@ -1,19 +1,14 @@
-import 'package:qimahalan/core/databases/api/end_points.dart';
-import 'package:qimahalan/core/databases/api_consumer.dart';
-import 'package:qimahalan/core/params/convert_params.dart';
-import 'package:qimahalan/convert/data/models/convert_model.dart';
+import 'package:Dinaro/core/databases/api/end_points.dart';
+import 'package:Dinaro/core/databases/api_consumer.dart';
+import 'package:Dinaro/core/params/convert_params.dart';
+import 'package:Dinaro/convert/data/models/convert_model.dart';
 
-abstract class BaseConvertRemoteDataSource {
-  Future<ConvertModel> convert({required ConvertParams params});
-}
+class ConvertRemoteDataSource {
+  final ApiConsumer apiConsumer;
 
-class ConvertRemoteDataSource extends BaseConvertRemoteDataSource {
-  late final ApiConsumer apiConsumer;
-
-  @override
-  @override
+  ConvertRemoteDataSource({required this.apiConsumer});
   Future<ConvertModel> convert({required ConvertParams params}) async {
-    final response = await apiConsumer.post(
+    final response = await apiConsumer.get(
       "${EndPoints.baserUrl}${EndPoints.convert}"
       "?access_key=${EndPoints.accesskey}"
       "&${EndPoints.from}=${params.from}"

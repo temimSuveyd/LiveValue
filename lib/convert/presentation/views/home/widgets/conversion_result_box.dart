@@ -1,42 +1,62 @@
-
 import 'package:flutter/material.dart';
 
 class ConversionResultBox extends StatelessWidget {
-  const ConversionResultBox({
-    super.key,
-    required this.buttonColor,
-    required this.accentColor,
-    required this.textColor,
-  });
+  const ConversionResultBox({super.key, required this.title});
 
-  final Color buttonColor;
-  final Color accentColor;
-  final Color textColor;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       decoration: BoxDecoration(
-        color: buttonColor,
-        borderRadius: BorderRadius.circular(16),
+        gradient: const LinearGradient(
+          colors: [Color(0xFF1565C0), Color(0xFF42A5F5)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blue.withOpacity(0.15),
+            blurRadius: 16,
+            offset: const Offset(0, 8),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         children: [
-          Icon(Icons.attach_money, color: accentColor, size: 32),
-          const SizedBox(width: 8),
-          Text(
-            '\$ 147.31',
-            style: TextStyle(
-              fontSize: 36,
-              fontWeight: FontWeight.bold,
-              color: textColor,
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.15),
+              shape: BoxShape.circle,
             ),
-            textAlign: TextAlign.left,
+            padding: const EdgeInsets.all(12),
+            child: const Icon(
+              Icons.attach_money,
+              color: Colors.white,
+              size: 36,
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              double.tryParse(title) != null
+                  ? double.parse(title).toStringAsFixed(2)
+                  : title,
+              overflow: TextOverflow.clip,
+              maxLines: 2,
+              style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 1.2,
+              ),
+              textAlign: TextAlign.left,
+            ),
           ),
         ],
       ),
     );
   }
 }
-

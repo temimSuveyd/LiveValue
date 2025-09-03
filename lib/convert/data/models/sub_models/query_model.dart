@@ -1,5 +1,5 @@
-import 'package:qimahalan/core/databases/api/end_points.dart';
-import 'package:qimahalan/convert/domain/entities/sub_entites/query_entite.dart';
+import 'package:Dinaro/core/databases/api/end_points.dart';
+import 'package:Dinaro/convert/domain/entities/sub_entites/query_entite.dart';
 
 class QueryModel extends QueryEntite {
   const QueryModel({
@@ -11,6 +11,6 @@ class QueryModel extends QueryEntite {
   factory QueryModel.fromJson(Map<String, dynamic> json) => QueryModel(
     from: json[ApiKey.from],
     to: json[ApiKey.to],
-    amount: json[ApiKey.amount],
+    amount: json[ApiKey.amount].toDouble(),
   );
 }

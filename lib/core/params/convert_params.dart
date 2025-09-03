@@ -3,5 +3,5 @@ class ConvertParams {
   final String to;
   final double amount ;
 
-  ConvertParams(this.amount, {required this.from, required this.to});
+  ConvertParams( {required this.from, required this.to,required this.amount,});
 }

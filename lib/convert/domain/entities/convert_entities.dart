@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:qimahalan/convert/domain/entities/sub_entites/info_entites.dart';
-import 'package:qimahalan/convert/domain/entities/sub_entites/query_entite.dart';
+import 'package:Dinaro/convert/domain/entities/sub_entites/info_entites.dart';
+import 'package:Dinaro/convert/domain/entities/sub_entites/query_entite.dart';
 
 class ConvertEntities extends Equatable {
  final QueryEntite query;

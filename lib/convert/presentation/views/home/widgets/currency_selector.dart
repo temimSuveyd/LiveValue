@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:qimahalan/convert/presentation/views/home/widgets/country_bottom_sheet.dart';
 
 class CurrencySelector extends StatelessWidget {
   final String flag;
   final String currency;
-  final bool isDark;
+  final Function() onPressed;
+
   const CurrencySelector({super.key, 
     required this.flag,
-    required this.currency,
-    required this.isDark,
+    required this.currency, 
+    required this.onPressed,
+  
   });
 
   @override
+
   Widget build(BuildContext context) {
     return Material(
       elevation: 2,
@@ -23,7 +25,7 @@ class CurrencySelector extends StatelessWidget {
       ),
       child: MaterialButton(
         onPressed: () {
-          showCountryBottomSheet(context);
+         onPressed();
         },
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
 
